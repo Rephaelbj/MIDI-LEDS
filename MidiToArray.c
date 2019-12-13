@@ -2,7 +2,6 @@
 #include <dos.h>
 #include <Windows.h>
 #include <stdlib.h>
-#include "MidiFile.h"
 #include <math.h>
 
 
