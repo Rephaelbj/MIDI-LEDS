@@ -40,7 +40,7 @@ int main()
 	
 
 	char command[50]; // char to hold the file name and the bat
-	strcpy(command, "Testing.bat PokeCenter.mid"); // name of the file we want to read from
+	strcpy(command, "MidiParser.bat PokeCenter.mid"); // name of the file we want to read from
 	system(command); // call the command line to do this 
 
 	ptr_file = fopen("output.txt", "rb");  // try to open the file
