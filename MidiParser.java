@@ -9,7 +9,7 @@ import javax.sound.midi.Track;
 import javax.sound.midi.*;
 import java.util.*;
 
-public class Test {
+public class MidiParser {
     public static final int NOTE_ON = 0x90; // a note on message
     public static final int NOTE_OFF = 0x80; // a note off message 
     public static final String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"}; // the notes names
@@ -27,7 +27,7 @@ public class Test {
         }
         else
         {
-            fileName = "rift.mid"; // else this is the default
+            fileName = "Online2.mid"; // else this is the default
         }
         // this code was found online and modified extremly 
         Sequence sequence = MidiSystem.getSequence(new File(fileName)); // put the file into the midi sequencer
@@ -115,15 +115,16 @@ public class Test {
                 }
             }
         }
-        for(int i = 0; i < Notes.size(); i++)
+        int row = 0;
+        for(int i = 0; i < Notes.size(); i++, row++)
         {
-            System.out.println(Notes.get(i).toString()); // print out the notes
+            System.out.print(Notes.get(i).toString()); // print out the notes
             if(i < Notes.size() - 1)
             {
                 double restValue = getRestValue(Notes.get(i), Notes.get(i+1)); // look for a rest between the notes
                 if(restValue != -1)
                 {
-                    System.out.println("R" + "0" + restValue + "0"); // print out the rest value
+                    System.out.print("R" + "0" + restValue + "0 "); // print out the rest value
                 }
             }   
         }
@@ -134,33 +135,35 @@ public class Test {
         int adder = 0; // how much we have to add,  this currectly only support 480
         double beat = PPQ;
         // this is to find out how much we add between notes, in the case of 480 its about 25 in 96 it's zero
-        if(note2.getTime1() / beat > 4)
+        if(PPQ == 480)
         {
-            double remain = note2.getTime();
-            while(remain > 4)
+            if(note2.getTime1() / beat > 4)
             {
-                remain -= 4;
+                double remain = note2.getTime();
+                while(remain > 4)
+                {
+                    remain -= 4;
+                }
+                adder = -75;
             }
-            adder = -75;
-        }
 
-        if((note2.getTime1() / beat) == 1)
-        {
-            adder = -25;
+            if((note2.getTime1() / beat) == 1)
+            {
+                adder = -25;
+            }
+            if((note2.getTime1() / beat) == 2)
+            {
+                adder = -50;
+            }
+            if((note2.getTime1() / beat) == 3)
+            {
+                adder = -75;
+            }
+            if((note2.getTime1() / beat) == 4)
+            {
+                adder = -100;
+            }
         }
-        if((note2.getTime1() / beat) == 2)
-        {
-            adder = -50;
-        }
-        if((note2.getTime1() / beat) == 3)
-        {
-            adder = -75;
-        }
-        if((note2.getTime1() / beat) == 4)
-        {
-            adder = -100;
-        }
-
         double restValue = note2.getTime1()- note1.getTime2()+adder; // add it the restvalue
         restValue = ((restValue * tempo)/ (1000 * 60)); // get the value with the tempo
         return restValue; // return it
@@ -180,7 +183,6 @@ public class Test {
             timeFrame2 = ((384.0 * tempo) / (1000 * 60));
         }
 
-        
         // find rest values are between .25 - 4
         // return -1 if no rest is found
         if(breakCondition > 0.1)

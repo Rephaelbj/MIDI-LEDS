@@ -14,14 +14,13 @@ public class Note
     private double tempo;
     private static Hashtable noteValue;
     double beats = 0;
-     private static DecimalFormat df2 = new DecimalFormat("#.##");
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
     public Note(String input, int base)
     {
         name = input; // input the name to the input string
         this.base = base;
     }
-    
-    
+
 
     public String getName()
     {
@@ -92,7 +91,7 @@ public class Note
     public String toString()
     {
         double timeFrame = ((base * tempo) / 60000); // get the time frame using the base 
-       // check which value it lines up with
+        // check which value it lines up with
         if((getTimeFrame() <= ((timeFrame / 4) + 0.1) && getTimeFrame() >= ((timeFrame / 4) - 0.1)))
         {
             beats = .25;
@@ -113,36 +112,124 @@ public class Note
         {
             beats = 1.5;
         }
+        else if((getTimeFrame() <= ((timeFrame * 1.75) + 0.1) && getTimeFrame() >= ((timeFrame * 1.75) - 0.1)))
+        {
+            beats = 1.75;
+        }
         else if(getTimeFrame() <= ((timeFrame * 2) + 0.1) && getTimeFrame() >= ((timeFrame * 2) - 0.1))
         {
             beats = 2;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 2.25) + 0.1) && getTimeFrame() >= ((timeFrame * 2.25) - 0.1)))
+        {
+            beats = 2.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 2.5) + 0.1) && getTimeFrame() >= ((timeFrame * 2.5) - 0.1)))
+        {
+            beats = 2.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 2.75) + 0.1) && getTimeFrame() >= ((timeFrame * 2.75) - 0.1)))
+        {
+            beats = 2.75;
         }
         else if(getTimeFrame() <= timeFrame * 3 + 0.1 && getTimeFrame() >= timeFrame * 3 - 0.1)
         {
             beats = 3;
         }
+        else if((getTimeFrame() <= ((timeFrame * 3.25) + 0.1) && getTimeFrame() >= ((timeFrame * 3.25) - 0.1)))
+        {
+            beats = 3.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 3.5) + 0.1) && getTimeFrame() >= ((timeFrame * 3.5) - 0.1)))
+        {
+            beats = 3.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 3.75) + 0.1) && getTimeFrame() >= ((timeFrame * 3.75) - 0.1)))
+        {
+            beats = 3.75;
+        }
         else if(getTimeFrame() <= timeFrame * 4 + 0.1 && getTimeFrame() >= timeFrame * 4 - 0.1)
         {
             beats = 4;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 4.25) + 0.1) && getTimeFrame() >= ((timeFrame * 4.25) - 0.1)))
+        {
+            beats = 4.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 4.5) + 0.1) && getTimeFrame() >= ((timeFrame * 4.5) - 0.1)))
+        {
+            beats = 4.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 4.75) + 0.1) && getTimeFrame() >= ((timeFrame * 4.75) - 0.1)))
+        {
+            beats = 4.75;
         }
         else if(getTimeFrame() <= timeFrame * 5 + 0.1 && getTimeFrame() >= timeFrame * 5 - 0.1)
         {
             beats = 5;
         }
+        else if((getTimeFrame() <= ((timeFrame * 5.25) + 0.1) && getTimeFrame() >= ((timeFrame * 5.25) - 0.1)))
+        {
+            beats = 5.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 5.5) + 0.1) && getTimeFrame() >= ((timeFrame * 5.5) - 0.1)))
+        {
+            beats = 5.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 5.75) + 0.1) && getTimeFrame() >= ((timeFrame * 5.75) - 0.1)))
+        {
+            beats = 5.75;
+        }
         else if(getTimeFrame() <= timeFrame * 6 + 0.1 && getTimeFrame() >= timeFrame * 6 - 0.1)
         {
             beats = 6;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 6.25) + 0.1) && getTimeFrame() >= ((timeFrame * 6.25) - 0.1)))
+        {
+            beats = 6.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 6.5) + 0.1) && getTimeFrame() >= ((timeFrame * 6.5) - 0.1)))
+        {
+            beats = 6.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 6.75) + 0.1) && getTimeFrame() >= ((timeFrame * 6.75) - 0.1)))
+        {
+            beats = 6.75;
         }
         else if(getTimeFrame() <= timeFrame * 7 + 0.1 && getTimeFrame() >= timeFrame * 7 - 0.1)
         {
             beats = 7;
         }
+        else if((getTimeFrame() <= ((timeFrame * 7.25) + 0.1) && getTimeFrame() >= ((timeFrame * 7.25) - 0.1)))
+        {
+            beats = 7.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 7.5) + 0.1) && getTimeFrame() >= ((timeFrame * 7.5) - 0.1)))
+        {
+            beats = 7.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 7.75) + 0.1) && getTimeFrame() >= ((timeFrame * 7.75) - 0.1)))
+        {
+            beats = 7.75;
+        }
         else if(getTimeFrame() <= timeFrame * 8 + 0.1 && getTimeFrame() >= timeFrame * 8 - 0.1)
         {
             beats = 8;
         }
+        else if((getTimeFrame() <= ((timeFrame * 8.25) + 0.1) && getTimeFrame() >= ((timeFrame * 8.25) - 0.1)))
+        {
+            beats = 8.25;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 8.5) + 0.1) && getTimeFrame() >= ((timeFrame * 8.5) - 0.1)))
+        {
+            beats = 8.5;
+        }
+        else if((getTimeFrame() <= ((timeFrame * 8.75) + 0.1) && getTimeFrame() >= ((timeFrame * 8.75) - 0.1)))
+        {
+            beats = 8.75;
+        }
 
-        String result = "N" + getKeyValue() + "" + beats + "" + getVelocity() + ""; // the string method of the note
+        String result = "N" + getKeyValue() + "" + beats + "" + getVelocity() + " "; // the string method of the note
         return result;
     }
 }
