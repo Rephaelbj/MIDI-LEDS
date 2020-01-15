@@ -9,19 +9,18 @@ import javax.sound.midi.Track;
 import javax.sound.midi.*;
 import java.util.*;
 
-public class Test {
+public class MidiParser {
     public static final int NOTE_ON = 0x90; // a note on message
     public static final int NOTE_OFF = 0x80; // a note off message 
     public static final String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"}; // the notes names
     public static ArrayList<Note> Notes = new ArrayList<Note>();
-    public static ArrayList<Chord> Chords = new ArrayList<Chord>();
+    public static DurationTable durations = new DurationTable();
+    //public static ArrayList<Chord> Chords = new ArrayList<Chord>();
     private static int tempo = 0;
-    private static double multipler = 1;
-    private static Hashtable noteValue;
     private static int PPQ;
     public static void main(String[] args) throws Exception {       
         String fileName; // the name of the file
-        if(args.length > 0) // if the aguments length != 0 then try to get the name of the file we want to read from
+        if(args.length > 0) // if the arguments length != 0 then try to get the name of the file we want to read from
         {
             fileName = args[0]; // the name is in the first position
         }
@@ -29,7 +28,7 @@ public class Test {
         {
             fileName = "rift.mid"; // else this is the default
         }
-        // this code was found online and modified extremly 
+        // this code was found online and modified extremely 
         Sequence sequence = MidiSystem.getSequence(new File(fileName)); // put the file into the midi sequencer
         int trackNumber = 0; // the track number 
         PPQ = sequence.getResolution();
@@ -117,6 +116,7 @@ public class Test {
         }
         for(int i = 0; i < Notes.size(); i++)
         {
+        	durations.findDuration(Notes.get(i));
             System.out.println(Notes.get(i).toString()); // print out the notes
             if(i < Notes.size() - 1)
             {

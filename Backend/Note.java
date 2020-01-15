@@ -10,18 +10,19 @@ public class Note
     private double time2 = 0; // the second tick mark
     private int keyValue; // the key value
     private int velocity; // how hard the note needs to be played
-    private double base;
-    private double tempo;
-    private static Hashtable noteValue;
-    double beats = 0;
-     private static DecimalFormat df2 = new DecimalFormat("#.##");
+    private double base; // for the PPQ
+    private double tempo; // for the tempo of the notes 
+    double beats = 0; // how many beats the note gets 
     public Note(String input, int base)
     {
         name = input; // input the name to the input string
         this.base = base;
     }
     
-    
+    public double getBeats()
+    {
+    	return beats;
+    }
 
     public String getName()
     {
@@ -40,7 +41,7 @@ public class Note
 
     public void setTime2(double input)
     {
-        time2=input; // sets the secon beat
+        time2=input; // sets the second beat
     }
 
     public int getKeyValue()
@@ -87,61 +88,26 @@ public class Note
     {
         return((getTime() * tempo)/ (1000 * 60));
     }
+    
+    // return the base of the note, what the note is based off of
+    public double getBase()
+    {
+    	return base;
+    }
+    
+    public void setBeats(double newBeat)
+    {
+    	beats = newBeat;
+    }
+    
+    public double getTempo()
+    {
+    	return tempo;
+    }
 
     @Override
     public String toString()
     {
-        double timeFrame = ((base * tempo) / 60000); // get the time frame using the base 
-       // check which value it lines up with
-        if((getTimeFrame() <= ((timeFrame / 4) + 0.1) && getTimeFrame() >= ((timeFrame / 4) - 0.1)))
-        {
-            beats = .25;
-        }
-        if((getTimeFrame() <= ((timeFrame / 2) + 0.1) && getTimeFrame() >= ((timeFrame / 2) - 0.1)))
-        {
-            beats = .5;
-        }
-        if((getTimeFrame() <= ((timeFrame * .75) + 0.1) && getTimeFrame() >= ((timeFrame * .75) - 0.1)))
-        {
-            beats = .75;
-        }
-        else if(getTimeFrame() == timeFrame) // this is a get time it see how many beats are needed in the note
-        {
-            beats = 1;
-        }
-        else if((getTimeFrame() <= ((timeFrame * 1.5) + 0.1) && getTimeFrame() >= ((timeFrame * 1.5) - 0.1)))
-        {
-            beats = 1.5;
-        }
-        else if(getTimeFrame() <= ((timeFrame * 2) + 0.1) && getTimeFrame() >= ((timeFrame * 2) - 0.1))
-        {
-            beats = 2;
-        }
-        else if(getTimeFrame() <= timeFrame * 3 + 0.1 && getTimeFrame() >= timeFrame * 3 - 0.1)
-        {
-            beats = 3;
-        }
-        else if(getTimeFrame() <= timeFrame * 4 + 0.1 && getTimeFrame() >= timeFrame * 4 - 0.1)
-        {
-            beats = 4;
-        }
-        else if(getTimeFrame() <= timeFrame * 5 + 0.1 && getTimeFrame() >= timeFrame * 5 - 0.1)
-        {
-            beats = 5;
-        }
-        else if(getTimeFrame() <= timeFrame * 6 + 0.1 && getTimeFrame() >= timeFrame * 6 - 0.1)
-        {
-            beats = 6;
-        }
-        else if(getTimeFrame() <= timeFrame * 7 + 0.1 && getTimeFrame() >= timeFrame * 7 - 0.1)
-        {
-            beats = 7;
-        }
-        else if(getTimeFrame() <= timeFrame * 8 + 0.1 && getTimeFrame() >= timeFrame * 8 - 0.1)
-        {
-            beats = 8;
-        }
-
         String result = "N" + getKeyValue() + "" + beats + "" + getVelocity() + ""; // the string method of the note
         return result;
     }
